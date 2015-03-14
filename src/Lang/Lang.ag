@@ -1,0 +1,48 @@
+data Prog
+  | Prog  name :: {Name}  vals :: {[Name]}  ress :: {[Name]}  code :: Stmt
+
+{
+type Name = String
+}
+
+data Stmt
+  | Seq         s1 :: Stmt  s2 :: Stmt
+  | Skip
+  | IfThenElse  c :: BoolExpr  sT :: Stmt  sF :: Stmt
+  | While       c :: BoolExpr  s :: Stmt
+  | Assign      x :: Name  e :: IntExpr
+  | Call        f :: Name  vals :: IntExprL  ress :: IntExprL
+
+data IntExpr
+  | Num    i :: {Int}
+  | Ref    x :: {Name}
+  | IntOp  op :: {IntOp}  e1 :: IntExpr  e2 :: IntExpr
+
+data BoolExpr
+  | Literal  b :: {Bool}
+  | Not      e :: BoolExpr
+  | BoolOp   op :: {BoolOp}  e1 :: BoolExpr  e2 :: BoolExpr
+  | IntComp  op :: {IntComp}  e1 :: IntExpr  e2 :: IntExpr
+
+{
+type IntExprL = [IntExpr]
+type BoolExprL = [BoolExpr]
+
+data IntOp =
+    OpPlus
+  | OpMin
+  | OpMul
+  | OpDiv
+  | OpMod
+
+data BoolOp =
+    OpAnd
+  | OpOr
+
+data IntComp =
+    OpEq
+  | OpLT
+  | OpLTE
+  | OpGT
+  | OpGTE
+}

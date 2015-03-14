@@ -1,0 +1,19 @@
+name:                  apaone
+version:               0.1
+synopsis:              Dataflow and Abstract Interpretation project
+description:           Solution for assignment 1 for Automatic Program Analysis at Utrecht University.
+category:              Unclassified
+copyright:             (c) 2015 Rob Spoel, Mathijs Baaijens
+author:                Rob Spoel <robspoel@gmail.com>, Mathijs Baaijens <mathijs.baaijens@gmail.com>
+maintainer:            Rob Spoel <robspoel@gmail.com>, Mathijs Baaijens <mathijs.baaijens@gmail.com>
+stability:             provisional
+homepage:              http://foswiki.cs.uu.nl/foswiki/bin/view/Apa/DataflowAndAbstractInterpretation
+tested-with:           GHC == 7.8.3
+build-type:            Simple
+cabal-version:         >= 1.8
+extra-source-files:    Makefile
+
+executable parse-lang
+  main-is:             ParseLang.hs
+  build-depends:       base >= 4 && < 5, uu-cco >= 0.1.0.1
+  hs-source-dirs:      src

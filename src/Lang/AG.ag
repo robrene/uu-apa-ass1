@@ -1,0 +1,6 @@
+module {Lang.AG} {}
+{
+}
+
+include "Lang.ag"
+
