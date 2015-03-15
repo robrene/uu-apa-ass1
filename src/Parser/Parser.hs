@@ -4,5 +4,5 @@ module Parser.Parser (
 
 import Lang.Lang
 
-parser :: String -> [Prog]
+parser :: String -> Prog
 parser = undefined
