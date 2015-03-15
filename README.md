@@ -13,7 +13,9 @@ The project builds several executables which can be chained together to form a p
 
 ## Language features
 ### Structures
-The input file consists of one or more procedures along with any number of global variable names.
+The input file consists of an optional comma-separated list of global variable names, an optional list of procedures and a mandatory program statement. See the example down below for a closer look at the syntax.
+
+Prog := `[<Name>] begin [<Proc>] <Stmt> end`
 
 Procedures contain a comma-separated list of *value* variable names and a list of *result* variable names. The keywords `val` and `res` can be omitted in the case of an empty list.
 
@@ -61,17 +63,22 @@ IntOp := `%`
 
     x, y
 
-    begin proc foobar(val z, u, res v) is
-      if z < 3 then v := 1
-      else (
-        call foobar(z - 2, 0, u) ;
-        call foobar(z - 1, 0, v) ;
-        v := v + u
-      ) end ;
-      call foobar(x, 0, y)
-    end
+    begin
 
-    begin proc main(res rv) is
-      x := 10 ;
-      call foobar(3, y, rv)
+      proc foobar(val z, u, res v) is
+        if z < 3 then v := 1
+        else (
+          call foobar(z - 2, 0, u) ;
+          call foobar(z - 1, 0, v) ;
+          v := v + u
+        )
+      end
+
+      proc main(val a) is
+        x := 10 ;
+        call foobar(a, 1, y)
+      end
+
+      call main(x, y)
+
     end
