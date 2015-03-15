@@ -1,5 +1,6 @@
 module Lang.Lang (
     Prog (..)
+  , Proc (..), ProcL
   , Name
   , Stmt (..)
   , IntExpr (..), IntExprL

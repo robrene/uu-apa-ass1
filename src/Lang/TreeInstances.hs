@@ -7,8 +7,12 @@ import CCO.Tree.Parser          (parseTree, app, arg)
 import Control.Applicative      (Applicative ((<*>)), (<$>), pure)
 
 instance Tree Prog where
-  fromTree (Prog name valL resL body) = T.App "Prog" [fromTree name, fromTree valL, fromTree resL, fromTree body]
-  toTree = parseTree [ app "Prog" (Prog <$> arg <*> arg <*> arg <*> arg) ]
+  fromTree (Prog procs globals) = T.App "Prog" [fromTree procs, fromTree globals]
+  toTree = parseTree [ app "Prog" (Prog <$> arg <*> arg) ]
+
+instance Tree Proc where
+  fromTree (Proc name valL resL body) = T.App "Proc" [fromTree name, fromTree valL, fromTree resL, fromTree body]
+  toTree = parseTree [ app "Proc" (Proc <$> arg <*> arg <*> arg <*> arg) ]
 
 instance Tree Stmt where
   fromTree (Seq s1 s2)             = T.App "Seq" [fromTree s1, fromTree s2]

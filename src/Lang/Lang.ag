@@ -1,7 +1,11 @@
 data Prog
-  | Prog  name :: {Name}  vals :: {[Name]}  ress :: {[Name]}  code :: Stmt
+  | Prog  procs :: ProcL  globals :: {[Name]}
+
+data Proc
+  | Proc  name :: {Name}  vals :: {[Name]}  ress :: {[Name]}  code :: Stmt
 
 {
+type ProcL = [Proc]
 type Name = String
 }
 
@@ -11,7 +15,7 @@ data Stmt
   | IfThenElse  c :: BoolExpr  sT :: Stmt  sF :: Stmt
   | While       c :: BoolExpr  s :: Stmt
   | Assign      x :: Name  e :: IntExpr
-  | Call        f :: Name  vals :: IntExprL  ress :: IntExprL
+  | Call        f :: Name  vals :: IntExprL  ress :: {[Name]}
 
 data IntExpr
   | Num    i :: {Int}
